@@ -1,0 +1,198 @@
+.notification {
+  padding: 36px 24px;
+  background-color: $White;
+  margin: 72px auto;
+  max-width: 748px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    padding: 24px 16px;
+    border-radius: 0;
+  }
+  .notify-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 42px;
+    @media (max-width: 768px) {
+      margin-bottom: 12px;
+    }
+    h1 {
+      @include comment-name($Very-dark-blue);
+      font-size: 36px;
+      display: flex;
+      align-items: center;
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+      span {
+        background-color: $Blue;
+        color: $White;
+        margin-left: 10px;
+        padding: 0px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        @media (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+    }
+    p {
+      @include comment-text;
+      color: $Blue;
+      cursor: pointer;
+      @media (max-width: 768px) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .notification-main {
+    .notification-item {
+      display: grid;
+      grid-template-columns: fit-content(8ch) 1fr;
+      grid-template-areas:
+        "img content fol-img"
+        "img content fol-img";
+      align-items: center;
+      gap: 16px;
+      padding: 8px;
+      border-radius: 10px;
+      background-color: $Very-light-grayish-blue;
+      @media (max-width: 768px) {
+        gap: 8px;
+      }
+      .notification-img {
+        grid-area: img;
+        width: 50px;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+      .notification-content {
+        grid-area: content;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .notification-content-top {
+          .name {
+            position: relative;
+            @include comment-name($Very-dark-blue);
+            cursor: pointer;
+            @media (max-width: 768px) {
+              font-size: 12px;
+            }
+            .info {
+              @include comment-text;
+              margin-left: 4px;
+              cursor: default;
+              @media (max-width: 768px) {
+                font-size: 12px;
+              }
+            }
+            .detail {
+              @include comment-name($Blue);
+              text-decoration: none;
+              margin-left: 4px;
+              position: relative;
+              margin-left: 4px;
+              @media (max-width: 768px) {
+                font-size: 12px;
+              }
+            }
+            .notify-dot {
+              content: "";
+              position: absolute;
+              background-color: $Red;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              top: 70%;
+              margin-left: 4px;
+              transform: translateY(-50%);
+              @media (max-width: 768px) {
+                width: 5px;
+                height: 5px;
+              }
+            }
+          }
+
+          p {
+            &:empty {
+              background-color: red;
+            }
+          }
+        }
+        .notification-content-bottom {
+          .time {
+            @include days-ago;
+            text-decoration: none;
+            cursor: default;
+          }
+        }
+      }
+      .follw-img {
+        grid: fol-img;
+        img {
+          width: 50px;
+          height: 50px;
+          @media (max-width: 768px) {
+            width: 35px;
+            height: 35px;
+          }
+        }
+        &.empty {
+          display: none;
+        }
+      }
+    }
+
+    .notification-all-read {
+      .notification-item {
+        background-color: transparent;
+        .detail {
+          color: $Dark-grayish-blue !important;
+        }
+        .notify-dot {
+          display: none;
+        }
+      }
+      .notify-top {
+        h1 {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .notification-message {
+      @include days-ago;
+      cursor: pointer;
+
+      p {
+        margin: 12px 0 12px 74px;
+        background-color: $Light-grayish-blue-2;
+        color: $Dark-grayish-blue;
+        padding: 12px;
+        border-radius: 4px;
+        box-shadow: 1px 2px 6.5px 0px hsl(219, 14%, 63%);
+        @media (max-width: 768px) {
+          font-size: 12px;
+          padding: 6px;
+          background-color: transparent;
+          border: 1px solid $Light-grayish-blue-2;
+          margin: 6px 0 6px 64px;
+        }
+        &:empty {
+          display: none;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
